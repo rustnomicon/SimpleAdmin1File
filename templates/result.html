@@ -1,0 +1,28 @@
+{{if .Error}}
+    <div class="">
+        {{.Error}}
+    </div>
+{{else if .Test}}
+    <div class="">
+        {{.Test}}
+    </div>
+{{else}}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                {{range .Columns}}
+                <th>{{.}}</th>
+                {{end}}
+            </tr>
+        </thead>
+        <tbody>
+            {{range .Rows}}
+            <tr>
+                {{range .}}
+                <td>{{.}}</td>
+                {{end}}
+            </tr>
+            {{end}}
+        </tbody>
+    </table>
+{{end}}

@@ -1,0 +1,25 @@
+<section>
+    <dialog class="cs-dialog">
+      <form method="dialog">
+        <div class="heading">
+          <div class="wrapper">
+            <div class="icon"></div>
+            <p class="text">Options</p>
+          </div>
+          <button class="cs-btn close" hx-on="click: closeDialog()"></button>
+        </div>
+        <div class="content">
+         {{.Content}}
+        </div>
+        <menu class="footer-btns">
+          <button class="cs-btn" hx-on ="click: closeDialog()">OK</button>
+        </menu>
+      </form>
+    </dialog>
+</section>
+<script>
+    function closeDialog() {
+    const dialog = document.getElementById('dialog');
+    dialog.close();
+  }
+</script>

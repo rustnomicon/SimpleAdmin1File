@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleAdmin1File</title>
+    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ekmas/cs16.css@main/css/cs16.min.css">
+</head>
+<style>
+    body {
+        padding: 40px;
+        max-width: 900px;
+        margin: auto;
+    }
+    .connection__container {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+    }
+    .input-group {
+    display: flex;
+    align-items: center; /* Vertically centers the label and input */
+    }
+
+    .input__label {
+        width: 80px; /* Fixed width for labels to align them nicely */
+        font-weight: bold; /* Optional: Makes the labels bold */
+    }  
+</style>
+
+<body class="container; padding: 20px;">
+    <h1>SimpleAdmin1File</h1>
+    <hr class="cs-hr" />
+    <br />
+    <div id="dialog">
+
+    </div>
+
+    <form hx-post="/query" hx-target="#result" hx-trigger="submit" hx-swap="innerHTML" hx-on::after-request="document.getElementById('result').innerHTML = event.detail.xhr.responseText;" class="mb-3">
+        <div class="row" style="display: flex; gap: 20px;">
+            <div style="flex: 1;">
+                <h3>Query</h3>
+                <textarea name="query" class="cs-input" rows="5" cols="50" ></textarea>
+                <button type="submit" class="cs-btn">Submit</button>
+            </div>
+            <div style="flex: 1;">
+                <label class="cs-select__label" for="driver">Choose a driver</label>
+                <select class="cs-select" name="driver" id="drivers">
+                    <option selected value="postgres">PostgreSQL</option>
+                    <option value="mysql">MySQL</option>
+                    <option value="sqlite">SQLite</option>
+                    <option value="clickhouse">ClickHouse</option>
+                    <option value="duckdb">DuckDB</option>
+                </select>
+                <h3>Connection</h3>
+                <hr class="cs-hr" />
+                <br />
+                <div class="connection__container">
+                    <div class="input-group">
+                        <label class="cs-input__label input__label" for="server">Server</label>
+                        <input class="cs-input" id="server" type="text" name="server" />
+                    </div>
+                
+                    <div class="input-group">
+                        <label class="cs-input__label input__label" for="username">Username</label>
+                        <input class="cs-input" id="username" type="text" name="username" />
+                    </div>
+                
+                    <div class="input-group">
+                        <label class="cs-input__label input__label" for="password">Password</label>
+                        <input class="cs-input" id="password" type="password" name="password" />
+                    </div>
+                    <div class="input-group">
+                        <label class="cs-input__label input__label" for="database">Database</label>
+                        <input class="cs-input" id="database" type="text" name="database" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="result">
+
+        </div>
+    </form>
+    
+</body>
+</html>
