@@ -1,4 +1,4 @@
-Admin panel for postges in one file
+Admin panel for dbs in one file
 
 Support:
 - Clichouse
@@ -6,4 +6,4 @@ Support:
 - MySQL
 - PostgreSQL
 - Sqlite
-![](panel.png)
+![](panel.jpeg)
