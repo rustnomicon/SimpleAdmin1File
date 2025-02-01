@@ -1,3 +1,58 @@
+<style>
+    /* Container styles */
+    .table-wrapper {
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .table-scroll {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+    
+    
+    /* Table styles */
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        white-space: nowrap;
+    }
+    
+    .data-table thead {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+    
+    .data-table th {
+        padding: 12px 15px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        background: inherit; /* Ensures sticky header background */
+    }
+    
+    .data-table td {
+        padding: 12px 15px;
+        font-size: 0.9em;
+    }
+    
+    .data-table tbody tr:hover {
+        transition: background-color 0.2s ease;
+    }
+    
+    .data-table .null-value {
+        color: #6c757d;
+        font-style: italic;
+    }
+</style>
+
 {{if .Error}}
     <div class="">
         {{.Error}}
@@ -6,23 +61,33 @@
     <div class="">
         {{.Test}}
     </div>
-{{else}}
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                {{range .Columns}}
-                <th>{{.}}</th>
-                {{end}}
-            </tr>
-        </thead>
-        <tbody>
-            {{range .Rows}}
-            <tr>
-                {{range .}}
-                <td>{{.}}</td>
-                {{end}}
-            </tr>
-            {{end}}
-        </tbody>
-    </table>
+    {{else}}
+    <div class="table-wrapper">
+        <div class="table-scroll">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        {{range .Columns}}
+                        <th>{{.}}</th>
+                        {{end}}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .Rows}}
+                    <tr>
+                        {{range .}}
+                        <td>
+                            {{if .}}
+                                {{.}}
+                            {{else}}
+                                <span class="null-value">null</span>
+                            {{end}}
+                        </td>
+                        {{end}}
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {{end}}

@@ -27,6 +27,13 @@
         width: 80px; /* Fixed width for labels to align them nicely */
         font-weight: bold; /* Optional: Makes the labels bold */
     }  
+    textarea {
+        width: 100%;
+        resize: none;
+    }
+    .cs-btn {
+        width: 100%;
+    }
 </style>
 
 <body class="container; padding: 20px;">
@@ -41,7 +48,7 @@
         <div class="row" style="display: flex; gap: 20px;">
             <div style="flex: 1;">
                 <h3>Query</h3>
-                <textarea name="query" class="cs-input" rows="5" cols="50" ></textarea>
+                <textarea name="query" class="cs-input" rows="5" cols="50" >SELECT * FROM pg_catalog.pg_tables;</textarea>
                 <button type="submit" class="cs-btn">Submit</button>
             </div>
             <div style="flex: 1;">
@@ -82,6 +89,5 @@
 
         </div>
     </form>
-    
 </body>
 </html>
